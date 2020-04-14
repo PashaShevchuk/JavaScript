@@ -470,3 +470,5 @@ function findIndex(array, key) {
 
 findIndex(arr, 4);
 
+
+console.log('1'- -'1');
