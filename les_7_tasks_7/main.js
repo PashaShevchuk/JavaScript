@@ -51,7 +51,7 @@ let comments = [
 
 let block = document.querySelector('.block');
 
-comments.forEach((comment, index) => {
+comments.forEach((comment) => {
     let div = document.createElement('div');
     div.innerText = `Тема: ${comment.title}; Комментарий: ${comment.body}`;
     block.appendChild(div);

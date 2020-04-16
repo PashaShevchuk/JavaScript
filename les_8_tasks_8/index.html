@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 8. Homework</title>
+</head>
+<body>
+
+<!-------------------------------------------------------------------------------------------------------------------->
+<div>
+    <textarea id="textArea1" cols="30" rows="5"></textarea>
+</div>
+<hr>
+<!-------------------------------------------------------------------------------------------------------------------->
+
+<!-------------------------------------------------------------------------------------------------------------------->
+<div>
+    <form name="form" id="form">
+
+        <p>
+            <input name="inputText" id="inputText" type="text" placeholder="Напишіть Ваше ПІБ" size="35">
+        </p>
+
+        <textarea name="textarea" id="textarea" cols="30" rows="5" placeholder="Чому ви вибрали іт?"></textarea>
+
+        <p>
+            <input type="checkbox" name="checkbox1" id="checkbox1">lorem<br>
+            <input type="checkbox" name="checkbox2" id="checkbox2">lorem<br>
+            <input type="checkbox" name="checkbox3" id="checkbox3">lorem
+        </p>
+
+        <p>
+            <input type="radio" name="radio1">Варіант 1<br>
+            <input type="radio" name="radio2">Варіант 2<br>
+            <input type="radio" name="radio3">Варіант 3
+        </p>
+
+        <select id="select">
+            <option disabled selected>make a choice</option>
+            <option id="option1" value="javaScript">JavaScript</option>
+            <option id="option2" value="java">Java</option>
+            <option id="option3" value="python">Python</option>
+        </select>
+
+    </form>
+</div>
+<hr>
+<!-------------------------------------------------------------------------------------------------------------------->
+
+<!-------------------------------------------------------------------------------------------------------------------->
+<div>
+    <button id="btnLeft">❮</button>
+    <button id="btnRight">❯</button>
+    <br>
+    <textarea id="textareaSave" cols="30" rows="7"></textarea>
+    <br>
+    <button id="btnSave">SAVE</button>
+</div>
+<hr>
+<!-------------------------------------------------------------------------------------------------------------------->
+
+<p>Додати новий контакт: <br>
+    <input id="name" type="text" placeholder="Напишіть Ваше ПІБ" size="35"><br>
+    <input id="date" type="text" placeholder="Дата народження" size="35"><br>
+    <input id="number" type="text" placeholder="Номер телефону" size="35"><br>
+    <input id="email" type="text" placeholder="Пошта" size="35"><br>
+    <input id="firm" type="text" placeholder="Фірма, відділ" size="35"><br>
+    <button id="saveCont">ADD</button>
+</p>
+<hr>
+<div>
+    <h4>Список контактів:</h4>
+    <div id="contact"></div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
