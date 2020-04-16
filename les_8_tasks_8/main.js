@@ -133,23 +133,26 @@ btnRight.onclick = () => {
 // --Каждому контакту добавить кнопку для удаления контакта.
 // --Каждому контакту добавить кнопку редактироваиня. При нажати на нее появляется форма, в которой есть все необходимые
 // инпуты для редактирования, которые уже заполнены данными объекта
-let name = document.getElementById('name');
-let date = document.getElementById('date');
-let number = document.getElementById('number');
-let email = document.getElementById('email');
-let firm = document.getElementById('firm');
 
-let saveCont = document.getElementById('saveCont');
+//================ не доробив ================
 
-let div = document.getElementById('contact');
-
-saveCont.onclick = () => {
-    localStorage.setItem('name', name.value);
-    localStorage.setItem('date', date.value);
-    localStorage.setItem('number', number.value);
-    localStorage.setItem('email', email.value);
-    localStorage.setItem('firm', firm.value);
-}
+// let name = document.getElementById('name');
+// let date = document.getElementById('date');
+// let number = document.getElementById('number');
+// let email = document.getElementById('email');
+// let firm = document.getElementById('firm');
+//
+// let saveCont = document.getElementById('saveCont');
+//
+// let div = document.getElementById('contact');
+//
+// saveCont.onclick = () => {
+//     localStorage.setItem('name', name.value);
+//     localStorage.setItem('date', date.value);
+//     localStorage.setItem('number', number.value);
+//     localStorage.setItem('email', email.value);
+//     localStorage.setItem('firm', firm.value);
+// }
 
 
 
