@@ -16,7 +16,7 @@ function myDay(isWorkDay, cb) {
         } else {
             cb('I sleep');
         }
-    } , 500)
+    }, 500)
 }
 
 function takeShower(hotWater, cb) {
