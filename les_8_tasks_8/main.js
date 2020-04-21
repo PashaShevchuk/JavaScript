@@ -15,87 +15,35 @@ textArea1.value = localStorage.getItem('textArea1');
 // Пользователь вводит какие-то данные и закрывает страницу (не факт, что он заполнил всю форму).
 // Сделайте так, чтобы при следующем заходе на страницу введенные им ранее данные стояли на своих местах.
 // Сделайте ваш скрипт как можно более универсальным.
+let form = document.getElementById('form');
 
-let form = document.forms.form;
+getDataForm(form);
 
-let inputText = form.inputText;
-let textarea = form.textarea;
-
-//-------------------for <input name="inputText" type="text"> and <textarea name="textarea">
-form.onkeyup = () => {
-    localStorage.setItem('inputText', inputText.value);
-    localStorage.setItem('textarea', textarea.value);
+function selectForm(t) {
+    saveForm(t);
 }
 
-inputText.value = localStorage.getItem('inputText');
-textarea.value = localStorage.getItem('textarea');
-
-
-let checkbox1 = form.checkbox1;
-let checkbox2 = form.checkbox2;
-let checkbox3 = form.checkbox3;
-
-//-------------------for <input type="checkbox" name="checkbox">
-checkbox1.onclick = () => {
-    (checkbox1.checked)
-        ? localStorage.setItem('checkbox1', 'checked')
-        : localStorage.removeItem('checkbox1')
+function saveForm(tag) {
+    for (let i = 0; i < tag.length; i++) {
+        if (tag.children[i].name === 'checkbox' || tag.children[i].name === 'radio')
+            tag.children[i].checked
+                ? tag.children[i].value = true
+                : tag.children[i].value = false;
+        localStorage.setItem(tag.children[i].id, tag.children[i].value);
+    }
 }
-checkbox1.checked = localStorage.getItem('checkbox1');
 
-checkbox2.onclick = () => {
-    (checkbox2.checked)
-        ? localStorage.setItem('checkbox2', 'checked')
-        : localStorage.removeItem('checkbox2')
+function getDataForm(tag) {
+    for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.hasOwnProperty(tag.children[i].id)) {
+            tag.children[i].value = localStorage.getItem(tag.children[i].id);
+            if (tag.children[i].value === 'true') {
+                tag.children[i].setAttribute('checked', 'checked');
+            }
+        }
+    }
 }
-checkbox2.checked = localStorage.getItem('checkbox2');
 
-checkbox3.onclick = () => {
-    (checkbox3.checked)
-        ? localStorage.setItem('checkbox3', 'checked')
-        : localStorage.removeItem('checkbox3')
-}
-checkbox3.checked = localStorage.getItem('checkbox3');
-
-
-//-------------------for  <input type="radio">
-let radio1 = form.radio1;
-let radio2 = form.radio2;
-let radio3 = form.radio3;
-
-radio1.onclick = () => {
-    (radio1.checked)
-        ? localStorage.setItem('radio1', 'true')
-        : localStorage.removeItem('radio1')
-}
-radio1.checked = JSON.parse(localStorage.getItem('radio1'));
-
-radio2.onclick = () => {
-    (radio2.checked)
-        ? localStorage.setItem('radio2', 'true')
-        : localStorage.removeItem('radio2')
-}
-radio2.checked = JSON.parse(localStorage.getItem('radio2'));
-
-radio3.onclick = () => {
-    (radio3.checked)
-        ? localStorage.setItem('radio3', 'true')
-        : localStorage.removeItem('radio3')
-}
-radio3.checked = JSON.parse(localStorage.getItem('radio3'));
-
-//-------------------for <select> ******* не працює *******
-// let option1 = document.getElementById('option1');
-// let option2 = document.getElementById('option2');
-// let option3 = document.getElementById('option3');
-//
-// option1.onclick = () => {
-//     (option1.selected)
-//         ? localStorage.setItem('option1', 'true')
-//         : localStorage.removeItem('option1')
-// }
-//
-// option1.selected = JSON.parse(localStorage.getItem('option1'));
 
 //======================================================================================================================
 // - Дан текстареа.
@@ -153,6 +101,3 @@ btnRight.onclick = () => {
 //     localStorage.setItem('email', email.value);
 //     localStorage.setItem('firm', firm.value);
 // }
-
-
-
