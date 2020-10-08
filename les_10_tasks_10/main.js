@@ -182,3 +182,7 @@ console.log(userCard2);
 
 userCard1.putCredits(300);
 console.log(userCard1.getCardOptions());
+
+console.log('*********************');
+console.log(new Date().toLocaleDateString());
+console.log(new Date().toLocaleTimeString());

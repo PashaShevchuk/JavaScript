@@ -60,8 +60,8 @@ let btnSave = document.getElementById('btnSave');
 
 let counter = 0;
 btnSave.onclick = () => {
-   counter++;
-   localStorage.setItem(counter, textareaSave.value);
+    counter++;
+    localStorage.setItem(counter, textareaSave.value);
 }
 
 btnLeft.onclick = () => {
