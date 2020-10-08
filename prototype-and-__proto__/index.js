@@ -19,4 +19,7 @@ class Users {
 const man1 = {};
 const man2 = {};
 
-console.log(man1.__proto__ === man2.__proto__);
+console.log(man1.__proto__ === man2.__proto__); // true
+console.log(man1 === man2);                     // false
+// Коли обєкти чи примітиви однотипні {} - {}, [] - [], 1 - 18, всі функції і клас - в них __proto__ однакове
+// і вони рівні, але самі обєкти між собою не рівні
