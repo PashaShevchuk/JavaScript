@@ -6,6 +6,7 @@ const age = 20;    // age.__proto__ Якщо до примітива зверт�
 
 function updateUsers() {           // updateUsers.__proto__, function declaration
 }
+
 const isUserOnline = function () { // isUserOnline.__proto__, function expression
 }
 const madeCount = () => {
@@ -14,7 +15,7 @@ const madeCount = () => {
 class Users {
 }                                  // Users.__proto__
 
-// В будь якого обєкта є .__proto__
+// В будь якого обєкта є .__proto__.
 
 const man1 = {};
 const man2 = {};
@@ -23,3 +24,16 @@ console.log(man1.__proto__ === man2.__proto__); // true
 console.log(man1 === man2);                     // false
 // Коли обєкти чи примітиви однотипні {} - {}, [] - [], 1 - 18, всі функції і клас - в них __proto__ однакове
 // і вони рівні, але самі обєкти між собою не рівні
+
+// В обєкта який є класом або функцією та у встроєних класаї є prototype:
+// class MyClass {}           // .prototype
+// function Logger () {}      // .prototype
+// const API = function () {} // .prototype
+// Object.prototype
+// Promise.prototype
+// Function.prototype
+// Boolean.prototype
+// Number.prototype
+// String.prototype
+// Array.prototype
+
