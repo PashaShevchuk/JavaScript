@@ -37,3 +37,21 @@ console.log(man1 === man2);                     // false
 // String.prototype
 // Array.prototype
 
+// console.log(Object.prototype === Number.prototype); // false
+// prototype є незалежними обєктами
+
+// __proto__ будь якого обєкта посилається на prototype класа (ф-ції конструктора), за допомогою якого цей обєкт створений
+
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.hello = function () {
+  console.log(this.name);
+}
+
+const pavlo = new Person('Pavlo');
+pavlo.hello(); // Pavlo
+
+const mary = new Person('Mary');
+mary.hello(); // Mary
