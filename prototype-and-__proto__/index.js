@@ -42,12 +42,25 @@ console.log(man1 === man2);                     // false
 
 // __proto__ будь якого обєкта посилається на prototype класа (ф-ції конструктора), за допомогою якого цей обєкт створений
 
-function Person(name) {
-  this.name = name;
-}
 
-Person.prototype.hello = function () {
-  console.log(this.name);
+// 1
+// function Person(name) {
+//   this.name = name;
+// }
+//
+// Person.prototype.hello = function () {
+//   console.log(this.name);
+// }
+
+// 2
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  hello() {
+    console.log(this.name);
+  }
 }
 
 const pavlo = new Person('Pavlo');
@@ -55,3 +68,22 @@ pavlo.hello(); // Pavlo
 
 const mary = new Person('Mary');
 mary.hello(); // Mary
+
+const x = 18;
+console.log(x.__proto__ === Number.prototype); // true
+
+class Animal {
+}
+
+console.log(Animal.__proto__ === Function.prototype); // true
+
+
+class Hek {
+  constructor(name) {
+    this.name = name;
+  }
+
+  hello() {
+    console.log(`Hello ${ this.name }`);
+  }
+}
