@@ -72,18 +72,15 @@ mary.hello(); // Mary
 const x = 18;
 console.log(x.__proto__ === Number.prototype); // true
 
-class Animal {
+class Human {
 }
 
-console.log(Animal.__proto__ === Function.prototype); // true
+console.log(Human.__proto__ === Function.prototype); // true
+//______________________________________________________________________________________________________________________
 
-
-class Hek {
-  constructor(name) {
-    this.name = name;
-  }
-
-  hello() {
-    console.log(`Hello ${ this.name }`);
+class Animal {
+  constructor(options) {
+    this.name = options.name;
+    this.color = options.color;
   }
 }
