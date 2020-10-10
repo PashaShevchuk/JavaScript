@@ -125,3 +125,13 @@ class Cat extends Animal {
 
 const cat = new Cat({ name: 'Pushok', color: 'grey', hasTail: true, type: 'Cat' });
 cat.voice(); // Voice from Pushok -> // Pushok says meow
+//______________________________________________________________________________________________________________________
+
+Object.prototype.print = function () {
+  console.log('I am object:', this);
+}
+
+cat.print(); // I am object: Cat { name: 'Pushok', color: 'grey', hasTail: true, type: 'cat' }
+
+const bob = { name: 'Bob' };
+bob.print(); // I am object: { name: 'Bob' }
