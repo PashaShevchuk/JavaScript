@@ -77,10 +77,51 @@ class Human {
 
 console.log(Human.__proto__ === Function.prototype); // true
 //______________________________________________________________________________________________________________________
+// Наслідування
 
 class Animal {
   constructor(options) {
     this.name = options.name;
     this.color = options.color;
   }
+
+  voice() {
+    console.log('Voice from', this.name);
+  }
 }
+
+const dog = new Animal({ name: 'Rex', color: 'black' });
+dog.voice(); // Voice from Rex
+
+// *** ES5 *** - функція констурктор
+// const Cat = function (options) {
+//   Animal.apply(this, arguments);
+//   this.hasTail = options.hasTail;
+//   this.type = 'cat';
+// }
+
+// Можна переписати методи з батьківського класу
+// Cat.prototype.voice = function () {
+//   Animal.prototype.voice.apply(this, arguments);
+//   console.log(this.name, 'says meow');
+// }
+
+
+// *** ES6 ***
+class Cat extends Animal {
+  constructor(options) {
+    super(options);
+    this.hasTail = options.hasTail;
+    this.type = 'cat';
+  }
+
+  // Можна переписати методи з батьківського класу
+  voice() {
+    // Якщо спочатку хочемо викликати ще метод батьківського класу
+    super.voice();
+    console.log(this.name, 'says meow');
+  }
+}
+
+const cat = new Cat({ name: 'Pushok', color: 'grey', hasTail: true, type: 'Cat' });
+cat.voice(); // Voice from Pushok -> // Pushok says meow
