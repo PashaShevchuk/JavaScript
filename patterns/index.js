@@ -3,6 +3,60 @@
 // 1. Constructor
 //______________________________________________________________________________________________________________________
 // 2. Factory
+// Factory method - это порождающий паттерн проектирования, который использует полиморфизм - объекты или классы
+// наследуются от одного абстрактного базового объекта или класса, предназначенного для полиморфного использования.
+// В этом объекте или классе определяется единый интерфейс, через который будут происходить операции с конечными
+// объектами или классами.
+class SimpleMembership {
+  constructor(name) {
+    this.name = name;
+    this.cost = 50;
+  }
+}
+
+class StandardMembership {
+  constructor(name) {
+    this.name = name;
+    this.cost = 150;
+  }
+}
+
+class PremiumMembership {
+  constructor(name) {
+    this.name = name;
+    this.cost = 500;
+  }
+}
+
+class MemberFactory {
+  static list = {
+    simple: SimpleMembership,
+    standard: StandardMembership,
+    premium: PremiumMembership
+  };
+
+  create(name, type = 'simple') {
+    const Membership = MemberFactory.list[type] || MemberFactory.list.simple;
+    const member = new Membership(name);
+    member.type = type;
+    member.define = function () {
+      console.log(`${ this.name } (${ this.type }): ${ this.cost }`);
+    }
+    return member;
+  }
+}
+
+const factory = new MemberFactory();
+
+const pavlo = factory.create('Pavlo', 'premium');
+pavlo.define(); // Pavlo (premium): 500
+
+const homer = factory.create('Homer');
+homer.define(); // Homer (simple): 50
+
+const bart = factory.create('Bart', 'standard');
+bart.define(); // Bart (standard): 150
+
 //______________________________________________________________________________________________________________________
 // 3. Prototype
 //______________________________________________________________________________________________________________________
