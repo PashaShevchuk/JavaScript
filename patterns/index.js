@@ -74,6 +74,54 @@ bart.define(); // Bart (standard): 150
 
 //______________________________________________________________________________________________________________________
 // 3. Prototype
+// Можемо створювати нові обєкти використовуючи як скелет для їх прототипів інші обєкти.
+// Шаблон предназначен для создания объекта, который можно использовать в качестве основы для других объектов
+// посредством наследования прототипа.
+// Паттерн Prototype - это порождающий шаблон, который позволяет создавать новые, уже инициализированные, объекты или
+// классы на основе исходного.
+
+// 1
+const car = {
+  wheels: 4,
+  init() {
+    console.log(`Car model: ${ this.model }, wheels: ${ this.wheels }`);
+  }
+};
+
+const carWithModel = Object.create(car, {
+  model: {
+    value: 'Audi'
+  }
+});
+console.log(carWithModel.__proto__ === car); // true
+carWithModel.init(); // Car model: Audi, wheels: 4
+
+// 2
+class TeslaCar {
+  constructor(model, price, interior, autopilot) {
+    this.model = model;
+    this.price = price;
+    this.interior = interior;
+    this.autopilot = autopilot;
+  }
+
+  produce() {
+    return new TeslaCar(this.model, this.price, this.interior, this.autopilot); // для клонування обєкта
+  }
+}
+
+const prototypeCar = new TeslaCar('S', 50000, 'black', false); // базовий обєкт
+
+const car1 = prototypeCar.produce();
+const car2 = prototypeCar.produce();
+const car3 = prototypeCar.produce();
+
+car1.interior = 'white';
+car1.autopilot = true;
+
+console.log(car1); // TeslaCar {model: "S", price: 50000, interior: "white", autopilot: true}
+console.log(car2); // TeslaCar {model: "S", price: 50000, interior: "black", autopilot: false}
+
 //______________________________________________________________________________________________________________________
 // 4. Singleton
 // Singleton — порождающий шаблон проектирования, гарантирующий что в однопоточном приложении будет единственный
