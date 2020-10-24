@@ -276,6 +276,43 @@ console.log(adapter.operations(5, 3, 'add')); // 8
 
 //______________________________________________________________________________________________________________________
 // 2. Decorator
+// Завдяки цьому патерну ми маємо можливість додавати нову поведінку або функціонал для інснуючих класів.
+// Декоратор приймає інстанс класу та вертає його.
+
+class BaseServer {
+  constructor(ip, port) {
+    this.ip = ip;
+    this.port = port;
+  }
+
+  get url() {
+    return `https://${ this.ip }:${ this.port }`;
+  }
+}
+
+function AmazonWebService(server) {  // ця функція є декоратором
+  server.isAWS = true;
+  server.awsInfo = function () {
+    return server.url;
+  }
+  return server;
+}
+
+function azure(server) { // декоратор
+  server.isAzure = true;
+  server.port += 500;
+  return server;
+}
+
+const s1 = AmazonWebService(new BaseServer('12.34.56.78', 8080));
+console.log(s1.isAWS);     // true
+console.log(s1.awsInfo()); // https://12.34.56.78:8080
+
+const s2 = azure(new BaseServer('98.76.54.32', 2500));
+console.log(s2.isAzure); // true
+console.log(s2.port);    // 3000
+console.log(s2.url);     // https://98.76.54.32:3000
+
 //______________________________________________________________________________________________________________________
 // 3. Facade
 //______________________________________________________________________________________________________________________
