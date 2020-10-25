@@ -315,6 +315,56 @@ console.log(s2.url);     // https://98.76.54.32:3000
 
 //______________________________________________________________________________________________________________________
 // 3. Facade
+// Використувується для того щоб створювати більш простіший і унікальний інтерфейс для взаємодії з різними класами.
+// Он заключается в том, чтобы создать простой интерфейс к большой и сложной части кода, чтобы спрятать его сложность.
+class Complaints {
+  constructor() {
+    this.complaints = [];
+  }
+
+  reply() {
+  }
+
+  add(complaint) {
+    this.complaints.push(complaint);
+    return this.reply(complaint);
+  }
+}
+
+class ProductComplaints extends Complaints {
+  reply({ id, customer, details }) {
+    return `Product: ${ id }: ${ customer } (${ details })`;
+  }
+}
+
+class ServiceComplaints extends Complaints {
+  reply({ id, customer, details }) {
+    return `Service: ${ id }: ${ customer } (${ details })`;
+  }
+}
+
+class ComplaintRegistry { // цей клас є фасадом
+  register(customer, type, details) {
+    const id = Date.now();
+    let complaint;
+
+    if (type === 'service') {
+      complaint = new ServiceComplaints();
+    } else {
+      complaint = new ProductComplaints();
+    }
+
+    return complaint.add({ id, customer, details });
+  }
+}
+
+const registry = new ComplaintRegistry();
+console.log(registry.register('Pavlo', 'service', 'Bad service'));
+// Service: 1603655407425: Pavlo (Bad service)
+
+console.log(registry.register('Mary', 'product', 'Bad product'));
+// Product: 1603655468444: Mary (Bad product)
+
 //______________________________________________________________________________________________________________________
 // 4. Flyweight
 //______________________________________________________________________________________________________________________
