@@ -367,6 +367,52 @@ console.log(registry.register('Mary', 'product', 'Bad product'));
 
 //______________________________________________________________________________________________________________________
 // 4. Flyweight
+// Використовується для того щоб ефективно передавати та працювати з даними через різні типи обєктів.
+// flyweight предназначается для экономии памяти занимаемой объектами: если объект еще не создан - он его создает и
+// помещает в свой внутренний пул, если объект уже создан(содержится в пуле) - возвращает ссылку на него. Данный паттерн
+// хорошо подходит для создания всяких объектов-значений, которые по своей природе могут быть похожи и имутабельны
+{
+  class Car {
+    constructor(model, price) {
+      this.model = model;
+      this.price = price;
+    }
+  }
+
+  class CarFactory {
+    constructor() {
+      this.cars = [];
+    }
+
+    create(model, price) {
+      const candidate = this.getCar(model);
+      if (candidate) {
+        return candidate;
+      }
+      const newCar = new Car(model, price);
+      this.cars.push(newCar);
+
+      return newCar;
+    }
+
+    getCar(model) {
+      return this.cars.find(car => car.model === model);
+    }
+  }
+
+  const factory = new CarFactory();
+
+  const bmw = factory.create('bmw', 15000);
+  console.log(bmw); // Car { model: 'bmw', price: 15000 }
+
+  const audi = factory.create('audi', 20000);
+  console.log(audi); // Car { model: 'audi', price: 20000 }
+
+  const bmwX5 = factory.create('bmw', 12000);
+  console.log(bmwX5); // Car { model: 'bmw', price: 15000 } - посилання на обєкт bmw
+  console.log(bmwX5 === bmw); // true
+}
+
 //______________________________________________________________________________________________________________________
 // 5. Proxy
 //______________________________________________________________________________________________________________________
