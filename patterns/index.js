@@ -509,6 +509,59 @@ console.log(c.commandsExecuted); // [ 'square', 'cube', 'cube' ]
 
 //______________________________________________________________________________________________________________________
 // 3. Iterator
+// Створюємо обєкт (або клас) у якого можемо послідовно отримувати доступ до певної інформації.
+// предоставляет механизм последовательного перебора элементов коллекции без раскрытия ее внутреннего представления.
+// То есть паттерн позволяет перебирать элементы коллекции, не зная, как реализована коллекция. Применение паттерна
+// позволяет передать ответственность перебора элементов от объекта коллекции объекту итератора. Это обстоятельство
+// не только упрощает интерфейс, но и избавляет коллекцию от посторонних обязанностей (ее главной задачей является
+// управление объектами, а не перебор).
+
+class MyIterator {
+  constructor(data) {
+    this.index = 0;
+    this.data = data;
+  }
+
+  [Symbol.iterator]() {
+    return {
+      next: () => {
+        if (this.index < this.data.length) {
+          return {
+            value: this.data[this.index++],
+            done: false
+          }
+        } else {
+          this.index = 0;
+          return {
+            done: true,
+            value: void 0
+          }
+        }
+      }
+    }
+  }
+}
+
+function* generator(collection) {
+  let index = 0;
+
+  while (index < collection.length) {
+    yield collection[index++];
+  }
+}
+
+
+const iterator = new MyIterator(['This', 'is', 'iterator']);
+const gen = generator(['This', 'is', 'iterator']);
+
+// for (const val of gen) {
+//   console.log('Value: ', val)
+// }
+
+console.log(gen.next().value); // This
+console.log(gen.next().value); // is
+console.log(gen.next().value); // iterator
+
 //______________________________________________________________________________________________________________________
 // 4. Mediator
 //______________________________________________________________________________________________________________________
